@@ -12,13 +12,13 @@ namespace Ecommerce4.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-
+        //text of the comments
         public string Text { get; set; }
-
+        //User id of the commentor
         public int UserID { get; set; }
-
+        //product id on which comment is made
         public int ProductID { get; set; }
-
+        //Rating of the product
         public int Rating { get; set; }
 
         public DateTime CommentedAt { get; set; }

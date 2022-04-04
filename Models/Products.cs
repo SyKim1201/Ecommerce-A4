@@ -13,19 +13,19 @@ namespace Ecommerce4.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-
+        //Product title
         public string Title { get; set; }
-
+        //Product Description
         public string Description { get; set; }
-
+        //Quantity
         public int Quantity { get; set; }
-
+        //Price
         public int Price { get; set; }
-
+        //Image of the product
         public string BannerImage { get; set; }
-
+        //Thumbnail o the product
         public string ThumbnailImage { get; set; }
-
+        //shipping cost 
         public int ShippingCost { get; set; }
 
     }

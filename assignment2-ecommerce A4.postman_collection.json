@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "18726c2d-6b33-49a8-be0a-c209941ab1fd",
+		"name": "assignment2-ecommerce A4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    if(!(jsonData.length == 0)) {\r",
+									"        pm.expect(jsonData[0].title).to.eql(\"a\");\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Failed status test\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ASSIGNMENT_URL}}/api/products",
+							"host": [
+								"{{ASSIGNMENT_URL}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get single product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    if(!(jsonData.length == 0)) {\r",
+									"        pm.expect(jsonData.title).to.eql(\"COFYE A\");\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Failed status test\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Missing value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Product not found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ASSIGNMENT_URL}}/api/products/1",
+							"host": [
+								"{{ASSIGNMENT_URL}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Successful value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Product deleted successfully\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Failed status test\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Missing value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Product not found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ASSIGNMENT_URL}}/api/products/1",
+							"host": [
+								"{{ASSIGNMENT_URL}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Successful value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Product created successfully\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Failed status test\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n\"title\": \"COFYE E\",  \r\n\"description\": \"The COFYE E coffee maker combines precision brewing, top-quality construction, and a design that will elevate any environment. Designed for perfect brewing from 16 to 40 ounces, the Eight uses a smart brewing algorithm to mimic hand-made pour over coffee.\",  \r\n\"quantity\": 3,  \r\n\"price\": 6,  \r\n\"bannerimage\": \"https://s7d1.scene7.com/is/image/NewellRubbermaid/BVMC-KNX23RF%20CoffeeMaker%20Silo%20Hero%20Coffee?wid=1000&hei=1000\",  \r\n\"thumbnailimage\": \"https://s7d1.scene7.com/is/image/NewellRubbermaid/BVMC-KNX23RF%20CoffeeMaker%20Silo%20Hero%20Coffee?wid=1000&hei=1000\",   \r\n\"shippingcost\": 4}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ASSIGNMENT_URL}}/api/products/",
+							"host": [
+								"{{ASSIGNMENT_URL}}"
+							],
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Successful value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Product updated successfully\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Failed status test\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Missing value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Product not found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \"id\": 1,  \r\n\"title\": \"COFYE A\",  \r\n\"description\": \"The COFYE A coffee maker combines precision brewing, top-quality construction, and a design that will elevate any environment. Designed for perfect brewing from 16 to 40 ounces, the Eight uses a smart brewing algorithm to mimic hand-made pour over coffee.\",  \r\n\"quantity\": 3,  \r\n\"price\": 3,  \r\n\"bannerimage\": \"https://m.media-amazon.com/images/I/71LB1AbsorL._AC_SL1500_.jpg\",  \r\n\"thumbnailimage\": \"https://m.media-amazon.com/images/I/71LB1AbsorL._AC_SL1500_.jpg\",  \r\n\"shippingcost\": 4}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ASSIGNMENT_URL}}/api/products/1",
+							"host": [
+								"{{ASSIGNMENT_URL}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Get comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ASSIGNMENT_URL}}/api/comments",
+							"host": [
+								"{{ASSIGNMENT_URL}}"
+							],
+							"path": [
+								"api",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get comments by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ASSIGNMENT_URL}}/api/comments/1",
+							"host": [
+								"{{ASSIGNMENT_URL}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Successful value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Comments deleted successfully\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Failed status test\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Missing value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Comment not found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ASSIGNMENT_URL}}/api/comments/1",
+							"host": [
+								"{{ASSIGNMENT_URL}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Successful value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Comment created successfully\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Failed status test\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Invalid value test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Invalid form data\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n \"text\": \"test\",  \r\n \"user_id\": 1,  \r\n \"product_id\": 1,  \r\n \"rating\": 2,  \r\n \"commented_at\": \"2022-04-04T00:00:00\"\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ASSIGNMENT_URL}}/api/comments",
+							"host": [
+								"{{ASSIGNMENT_URL}}"
+							],
+							"path": [
+								"api",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ASSIGNMENT_URL",
+			"value": "http://localhost/assignment-php/"
+		}
+	]
+}

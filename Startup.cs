@@ -54,8 +54,13 @@ namespace Ecommerce4
 
             app.UseAuthorization();
 
-      
-            //app.UseMvc();
+            app.UseCors(builder => builder
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .SetIsOriginAllowed((host) => true)
+              .AllowCredentials()
+            );
+
 
             app.UseEndpoints(endpoints =>
             {
